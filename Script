@@ -1,0 +1,78 @@
+
+
+
+--Window
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Ike", "Ocean")
+
+
+
+
+--Auto farm Red orbs
+local Main = Window:NewTab("AutoFarm")
+local MainSection = Main:NewSection("AutoFarm")
+
+
+--Autofarm Sword Swing
+MainSection:NewToggle("Speed Autofarm", "Auto increases your speed speed", function(state)
+    if state then
+        getgenv().RedOrbFarm = true;
+
+while wait() do
+	if getgenv().RedOrbFarm == true then
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+	end
+end
+    else
+        getgenv().RedOrbFarm = false;
+    end
+end)
+
+
+--Auto XP
+MainSection:NewToggle("XP Autofarm", "Auto increases your XP and Levels", function(state)
+    if state then
+        getgenv().XPFarm = true;
+
+while wait() do
+	if getgenv().XPFarm == true then
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+	end
+end
+
+    else
+        getgenv().XPFarm = false;
+    end
+end)
+
+--Auto Gem
+MainSection:NewToggle("Gem Autofarm", "Auto increases your gems", function(state)
+    if state then
+        getgenv().GemFarm = true;
+
+while wait() do
+	if getgenv().GemFarm == true then
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+	end
+end
+    else
+        getgenv().GemFarm = false;
+    end
+end)
+
+
+--Auto Sword Buyer
+MainSection:NewToggle("Rebirth Autofarm", "Rebirths as soon as you can afford one", function(state)
+    if state then
+        getgenv().RebirthFarm = true;
+
+while wait() do
+	if getgenv().GemFarm == true then
+		game.ReplicatedStorage.rEvents.rebirthEvent:FireServer("rebirthRequest")
+	end
+end
+    else
+        getgenv().RebirthFarm = false;
+    end
+end)
+
